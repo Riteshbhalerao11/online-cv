@@ -1,7 +1,52 @@
+/* ==============================
+   Theme — shared palette with blog
+   Edit scss/_theme.scss to change colors
+   ============================== */
+
+:root {
+  --color-bg: #F4F1EA;
+  --color-bg-secondary: #EBE7DF;
+  --color-surface: #FAF8F3;
+  --color-text: #2D3331;
+  --color-text-secondary: #5A6560;
+  --color-text-muted: #8B8E84;
+  --color-accent: #728C6E;
+  --color-accent-light: #A0AA8E;
+  --color-accent-hover: #546B52;
+  --color-border: #D5D0C3;
+  --color-sidebar-bg: #384843;
+  --color-sidebar-text: #E4DFD0;
+}
+
+[data-theme="dark"] {
+  --color-bg: #191D1B;
+  --color-bg-secondary: #222826;
+  --color-surface: #2B312E;
+  --color-text: #E5DFCE;
+  --color-text-secondary: #ADA899;
+  --color-text-muted: #72746B;
+  --color-accent: #B5AE90;
+  --color-accent-light: #CEC69C;
+  --color-accent-hover: #C8C0A3;
+  --color-border: #373C39;
+  --color-sidebar-bg: #1E2422;
+  --color-sidebar-text: #C9C4B0;
+}
+
+/* ==============================
+   Global
+   ============================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: "Open Sans", serif;
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
   padding-top: 54px;
-  color: #868e96;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media (min-width: 992px) {
@@ -12,47 +57,61 @@ body {
 }
 
 h1,
-h2,
-h6 {
-  font-family: "Saira Extra Condensed", serif;
+h2 {
+  font-family: "Outfit", "DM Sans", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  color: #343a40;
+  color: var(--color-text);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 h1 {
-  font-size: 6rem;
-  line-height: 5.5rem;
+  font-size: 4.25rem;
+  line-height: 4rem;
 }
 
 h2 {
-  font-size: 3.5rem;
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 1.4rem;
 }
 
 h4 {
-  font-family: "Roboto Condensed", sans-serif;
-  font-weight: 600;
-  color: #000205;
   font-size: 1.3rem;
 }
-h3 {
-  font-family: "Roboto Condensed", sans-serif;
-  font-weight: 600;
-  color: #000205;
-  font-size: 1.4rem;
+
+p {
+  color: var(--color-text);
+  line-height: 1.7;
 }
 
 .subheading {
   font-weight: 500;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.3rem;
+  color: var(--color-text-secondary);
 }
 
+/* ==============================
+   Social icons
+   ============================== */
+
 .list-social-icons a {
-  color: #495057;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
 }
 .list-social-icons a:hover {
-  color: #bd5d38;
+  color: var(--color-accent);
 }
 .list-social-icons a .fa-lg {
   font-size: 1.75rem;
@@ -62,12 +121,31 @@ h3 {
   font-size: 3rem;
 }
 .list-icons .list-inline-item i:hover {
-  color: #bd5d38;
+  color: var(--color-accent);
+}
+
+/* ==============================
+   Sidebar / Nav
+   ============================== */
+
+#sideNav {
+  background-color: var(--color-sidebar-bg) !important;
+  transition: background-color 0.3s ease;
 }
 
 #sideNav .navbar-nav .nav-item .nav-link {
   font-weight: 600;
   text-transform: uppercase;
+  color: var(--color-sidebar-text);
+  transition: color 0.2s ease;
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+#sideNav .navbar-nav .nav-item .nav-link:hover,
+#sideNav .navbar-nav .nav-item .nav-link.active {
+  color: #fff;
 }
 
 @media (min-width: 992px) {
@@ -89,7 +167,8 @@ h3 {
   #sideNav .navbar-brand .img-profile {
     max-width: 10rem;
     max-height: 10rem;
-    border: 0.5rem solid rgba(255, 255, 255, 0.2);
+    border: 0.5rem solid rgba(255, 255, 255, 0.15);
+    transition: border-color 0.3s ease;
   }
   #sideNav .navbar-collapse {
     display: flex;
@@ -107,16 +186,41 @@ h3 {
   }
   #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
     display: block;
+    padding: 0.6rem 1.5rem;
   }
 }
 
+/* ==============================
+   Resume sections
+   ============================== */
+
 section.resume-section {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--color-border);
   padding-top: 5rem !important;
   padding-bottom: 5rem !important;
 }
+
+section.resume-section:nth-child(even) {
+  background-color: var(--color-bg-secondary);
+}
+
+section.resume-section .resume-item {
+  padding-left: 1rem;
+  border-left: 3px solid var(--color-border);
+  transition: border-color 0.2s ease;
+}
+
+section.resume-section .resume-item:hover {
+  border-left-color: var(--color-accent);
+}
+
 section.resume-section .resume-item .resume-date {
   min-width: none;
+}
+
+section.resume-section .resume-date .text-primary {
+  color: var(--color-accent-hover) !important;
+  font-weight: 600;
 }
 
 @media (min-width: 768px) {
@@ -135,27 +239,49 @@ section.resume-section .resume-item .resume-date {
   }
 }
 
+/* ==============================
+   Bootstrap overrides
+   ============================== */
+
 .bg-primary {
-  background-color: #455c13 !important;
+  background-color: var(--color-sidebar-bg) !important;
 }
 
 .text-primary {
-  color: #107869 !important;
+  color: var(--color-accent) !important;
 }
 
 a {
-  color: #107869;
+  color: var(--color-accent);
+  transition: color 0.2s ease;
 }
 a:hover,
 a:focus,
 a:active {
-  color: #824027;
+  color: var(--color-accent-hover);
 }
+
+/* ==============================
+   About section
+   ============================== */
+
 .about-me {
   margin-bottom: 2rem;
   margin-right: 20%;
-  color: rgba(0, 0, 0, 0.603);
+  color: var(--color-text);
+  font-size: 1.1rem;
+  line-height: 1.8;
 }
+
+@media (max-width: 767px) {
+  .about-me {
+    margin-right: 0;
+  }
+}
+
+/* ==============================
+   Custom icon overrides
+   ============================== */
 
 .twitter {
   color: white;
@@ -167,7 +293,64 @@ a:active {
   margin-top: 12.52px;
 }
 
+/* ==============================
+   Description text
+   ============================== */
+
 .description {
-  color: black;
+  color: var(--color-text);
   font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ==============================
+   Dark mode toggle
+   ============================== */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: var(--color-sidebar-text);
+  transition: all 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+  position: absolute;
+  right: 4rem;
+  top: 0.65rem;
+}
+
+.theme-toggle:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-toggle svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+@media (min-width: 992px) {
+  .theme-toggle {
+    position: static;
+    margin: auto auto 1.5rem auto;
+    display: flex;
+  }
+}
+
+/* ==============================
+   Selection
+   ============================== */
+
+::selection {
+  background: var(--color-accent-light);
+  color: var(--color-bg);
 }

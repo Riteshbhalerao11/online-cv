@@ -12,13 +12,8 @@
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- Custom fonts for this template -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-    rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900"
-    rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+  <!-- Custom fonts — Inter (unified with blog) -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -29,6 +24,16 @@
 
   <!-- Custom styles for this template -->
   <link href="css/resume.css" rel="stylesheet" />
+
+  <!-- Dark mode: apply saved theme before render to prevent flash -->
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 </head>
 
 <body id="page-top">
@@ -69,11 +74,13 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#courses">Certifications</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
-          </li> -->
       </ul>
     </div>
+    <!-- Theme toggle: outside collapse so it doesn't break nav flex -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"/></svg>
+      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none;"><path d="M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z"/></svg>
+    </button>
   </nav>
 
   <div class="container-fluid p-0">
@@ -88,7 +95,7 @@
           <a href="mailto:ritesh.work.personal@gmail.com">ritesh.work.personal@gmail.com</a>
         </div>
         <p class="about-me">
-          Hey, I'm Ritesh, currently working as a Research Engineer at d_model.ai. I am broadly interested in the
+          Hey, I'm Ritesh, currently working as a Research Scientist at d_model.ai. I am broadly interested in the
           mechanistic interpretability of large language models.
           While I am pretty flexible, my current focus lies in foundational interpretability research,
           reasoning models, and "model psychology" -- understanding and controlling
@@ -246,7 +253,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row mb-5">
           <div class="resume-content mr-auto">
-            <h3 class="mb-0">Research Engineer</h3>
+            <h3 class="mb-0">Research Scientist</h3>
             <div class="subheading mb-2">
               d_model.ai
             </div>
@@ -858,6 +865,40 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
+
+  <!-- Dark mode toggle -->
+  <script>
+    (function () {
+      var toggle = document.getElementById('themeToggle');
+      var sunIcon = toggle.querySelector('.sun-icon');
+      var moonIcon = toggle.querySelector('.moon-icon');
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (theme === 'dark') {
+          sunIcon.style.display = 'none';
+          moonIcon.style.display = 'block';
+        } else {
+          sunIcon.style.display = 'block';
+          moonIcon.style.display = 'none';
+        }
+      }
+
+      // Init: check localStorage, then system preference
+      var saved = localStorage.getItem('theme');
+      if (saved) {
+        setTheme(saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+      }
+
+      toggle.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme');
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    })();
+  </script>
 </body>
 
 </html>

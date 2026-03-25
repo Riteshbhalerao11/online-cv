@@ -1,16 +1,17 @@
 .bg-primary {
-  background-color: $primary !important;
+  background-color: var(--color-sidebar-bg) !important;
 }
 
 .text-primary {
-  color: $primary !important;
+  color: var(--color-accent) !important;
 }
 
 a {
-  color: $primary;
+  color: var(--color-accent);
+  transition: color 0.2s ease;
   &:hover,
   &:focus,
   &:active {
-    color: darken($primary, 15%);
+    color: var(--color-accent-hover);
   }
 }

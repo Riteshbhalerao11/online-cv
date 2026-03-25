@@ -1,10 +1,17 @@
-// Global styling for this template
+// Global styling
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   @include body-font;
   padding-top: 54px;
-  color: $gray-600;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 @media (min-width: 992px) {
   body {
     padding-top: 0;
@@ -13,38 +20,57 @@ body {
 }
 
 h1,
-h2,
+h2 {
+  @include display-font;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
 h3,
 h4,
 h5,
 h6 {
   @include heading-font;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: $gray-800;
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 h1 {
-  font-size: 6rem;
-  line-height: 5.5rem;
+  font-size: 4.25rem;
+  line-height: 4rem;
 }
 
 h2 {
-  font-size: 3.5rem;
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+p {
+  color: var(--color-text);
+  line-height: 1.7;
 }
 
 .subheading {
-  text-transform: uppercase;
   font-weight: 500;
   @include heading-font;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
+  color: var(--color-text-secondary);
 }
 
 .list-social-icons {
   a {
-    color: $gray-700;
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease;
     &:hover {
-      color: $primary;
+      color: var(--color-accent);
     }
     .fa-lg {
       font-size: 1.75rem;
@@ -56,7 +82,7 @@ h2 {
   font-size: 3rem;
   .list-inline-item i {
     &:hover {
-      color: $primary;
+      color: var(--color-accent);
     }
   }
 }
